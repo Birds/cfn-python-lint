@@ -1,40 +1,50 @@
-"""
-Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-SPDX-License-Identifier: MIT-0
-"""
-# pylint: disable=W0108
-# pylint: disable=W0622
 import logging
 import cfnlint
-import cfnlint.customRules.Operators
-import cfnlint.customRules.Rule
+
 
 LOGGER = logging.getLogger(__name__)
-Operator = {'EQUALS': lambda x, y: cfnlint.customRules.Operators.equalsOp(x, y),
-            'PLACEHOLDER': lambda x, y: LOGGER.debug('Placeholder Op')}
+Operators = {'EQUALS': lambda x,y: equals(x,y)}
 
-def check(filename, template):
+def check_custom_rules(filename, template):
     """ Process custom rule file """
     matches = []
     with open(filename) as customRules:
-        line_number = 1
+        count = 1
         for line in customRules:
-            LOGGER.debug('Processing Custom Rule Line %d', line_number)
-            line = line.replace('"', '')
-            rule = cfnlint.customRules.Rule.make_rule(line.split(' '))
-            if rule.valid and rule.resourceType[0] != '#':
-                try:
-                    template_properties = template.get_resource_properties([rule.resourceType])
-                    result = Operator[rule.operator](rule, template_properties)
-                    if result != rule.operator:
-                        matches.append(cfnlint.rules.Match(line_number, '0', '0', '0', filename, CustomRule('E9999'), result, None))
-                except KeyError:
-                    matches.append(cfnlint.rules.Match(line_number, '0', '0', '0', filename, CustomRule('E9999'),
-                                                       str(rule.operator) + ' not in supported operators: [EQUALS] at ' + str(line), None))
-            line_number += 1
+            LOGGER.debug('Processing Custom Rule Line %d', count)
+            line = line.replace('"','')
+            rule = line.split(" ")
+            if len(rule) == 4:
+                result = Operators[rule[2]](rule,template.get_resource_properties([rule[0]]))
+                if result != rule[2]:
+                    matches.append(cfnlint.rules.Match(count,"0","0","0",filename,CustomRule("E9999"),result, None))
+            count += 1
     return matches
 
+def equals(rule, propertyList):
+    """ Process EQUAL operators """
+    if len(propertyList) == 0:
+        return "Error - Invalid Resource Type " + rule[0]
+    for prop in propertyList:
+        actualValue = getProperty(prop, rule[1])
+        if actualValue.strip() != str(rule[3]).strip():
+            return "Not Equal as " + actualValue + " does not equal " + rule[3]
+    return "EQUALS"
+
+
+def getProperty(json, nestedProperties):
+    """ Converts dot format strings to resultant values """
+    nestedProperties = "Value." + str(nestedProperties)
+    properties = nestedProperties.split(".")
+    for prop in properties:
+        try:
+            json = json[prop]
+        except KeyError as e:
+            return 'The following property was not found - "%s"' % str(e)
+    return str(json)
+
 class CustomRule(object):
-    """ Allows creation of match objects"""
     def __init__(self, id):
         self.id = id
+
+
