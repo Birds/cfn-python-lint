@@ -161,7 +161,8 @@
       "mq.m5.4xlarge",
       "mq.m5.large",
       "mq.m5.xlarge",
-      "mq.t2.micro"
+      "mq.t2.micro",
+      "mq.t3.micro"
     ]
   },
   {
@@ -228,6 +229,14 @@
       "dax.r4.8xlarge",
       "dax.r4.large",
       "dax.r4.xlarge",
+      "dax.r5.12xlarge",
+      "dax.r5.16xlarge",
+      "dax.r5.24xlarge",
+      "dax.r5.2xlarge",
+      "dax.r5.4xlarge",
+      "dax.r5.8xlarge",
+      "dax.r5.large",
+      "dax.r5.xlarge",
       "dax.t2.medium",
       "dax.t2.small"
     ]
@@ -241,7 +250,8 @@
       "db.r5.2xlarge",
       "db.r5.4xlarge",
       "db.r5.large",
-      "db.r5.xlarge"
+      "db.r5.xlarge",
+      "db.t3.medium"
     ]
   },
   {
@@ -347,6 +357,12 @@
       "d2.4xlarge",
       "d2.8xlarge",
       "d2.xlarge",
+      "g4dn.12xlarge",
+      "g4dn.16xlarge",
+      "g4dn.2xlarge",
+      "g4dn.4xlarge",
+      "g4dn.8xlarge",
+      "g4dn.xlarge",
       "i3.16xlarge",
       "i3.2xlarge",
       "i3.4xlarge",

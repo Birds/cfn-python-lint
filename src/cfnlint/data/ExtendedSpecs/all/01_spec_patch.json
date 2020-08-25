@@ -121,6 +121,20 @@
     "value": "Tag"
   },
   {
+    "op": "replace",
+    "path": "/ResourceTypes/AWS::IoT::ProvisioningTemplate/Properties/Tags/Type",
+    "value": "List"
+  },
+  {
+    "op": "add",
+    "path": "/ResourceTypes/AWS::IoT::ProvisioningTemplate/Properties/Tags/ItemType",
+    "value": "Tag"
+  },
+  {
+    "op": "remove",
+    "path": "/PropertyTypes/AWS::IoT::ProvisioningTemplate.Tags"
+  },
+  {
     "op": "add",
     "path": "/PropertyTypes/AWS::SSM::Association.ParameterValues",
     "value": {

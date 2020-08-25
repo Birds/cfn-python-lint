@@ -64,13 +64,6 @@
   },
   {
     "op": "add",
-    "path": "/PropertyTypes/AWS::EC2::LaunchTemplate.BlockDeviceMapping/Properties/VolumeType/Value",
-    "value": {
-      "ValueType": "EbsVolumeType"
-    }
-  },
-  {
-    "op": "add",
     "path": "/PropertyTypes/AWS::EC2::LaunchTemplate.CreditSpecification/Properties/CpuCredits/Value",
     "value": {
       "ValueType": "Ec2CpuCredits"
@@ -586,7 +579,7 @@
   },
   {
     "op": "add",
-    "path": "/ResourceTypes/AWS::DMS::ReplicationInstance/AvailabilityZone/Value",
+    "path": "/ResourceTypes/AWS::DMS::ReplicationInstance/Properties/AvailabilityZone/Value",
     "value": {
       "ValueType": "AvailabilityZone"
     }
@@ -796,7 +789,7 @@
   },
   {
     "op": "add",
-    "path": "/ResourceTypes/AWS::EC2::Subnet/AvailabilityZone/Value",
+    "path": "/ResourceTypes/AWS::EC2::Subnet/Properties/AvailabilityZone/Value",
     "value": {
       "ValueType": "AvailabilityZone"
     }
@@ -946,14 +939,14 @@
   },
   {
     "op": "add",
-    "path": "/ResourceTypes/AWS::RDS::Instance/Properties/MonitoringInterval/Value",
+    "path": "/ResourceTypes/AWS::RDS::DBInstance/Properties/MonitoringInterval/Value",
     "value": {
       "ValueType": "RdsInstanceMonitoringInterval"
     }
   },
   {
     "op": "add",
-    "path": "/ResourceTypes/AWS::RDS::Instance/Properties/PerformanceInsightsRetentionPeriod/Value",
+    "path": "/ResourceTypes/AWS::RDS::DBInstance/Properties/PerformanceInsightsRetentionPeriod/Value",
     "value": {
       "ValueType": "PerformanceInsightsRetentionPeriod"
     }

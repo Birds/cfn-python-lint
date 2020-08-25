@@ -70,4 +70,5 @@ class Runner(object):
                                 break
                         else:
                             return_matches.append(match)
+
         return return_matches

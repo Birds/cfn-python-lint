@@ -22,6 +22,14 @@
       "c5.large",
       "c5.metal",
       "c5.xlarge",
+      "c5a.12xlarge",
+      "c5a.16xlarge",
+      "c5a.24xlarge",
+      "c5a.2xlarge",
+      "c5a.4xlarge",
+      "c5a.8xlarge",
+      "c5a.large",
+      "c5a.xlarge",
       "c5d.12xlarge",
       "c5d.18xlarge",
       "c5d.24xlarge",
@@ -218,7 +226,8 @@
       "mq.m5.4xlarge",
       "mq.m5.large",
       "mq.m5.xlarge",
-      "mq.t2.micro"
+      "mq.t2.micro",
+      "mq.t3.micro"
     ]
   },
   {
@@ -309,7 +318,8 @@
       "db.r5.2xlarge",
       "db.r5.4xlarge",
       "db.r5.large",
-      "db.r5.xlarge"
+      "db.r5.xlarge",
+      "db.t3.medium"
     ]
   },
   {
@@ -466,6 +476,12 @@
       "d2.8xlarge",
       "d2.xlarge",
       "g3s.xlarge",
+      "g4dn.12xlarge",
+      "g4dn.16xlarge",
+      "g4dn.2xlarge",
+      "g4dn.4xlarge",
+      "g4dn.8xlarge",
+      "g4dn.xlarge",
       "i2.2xlarge",
       "i2.4xlarge",
       "i2.8xlarge",

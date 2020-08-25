@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: MIT-0
 """
+from functools import reduce  # pylint: disable=redefined-builtin
 import re
 import six
 from cfnlint.rules import CloudFormationLintRule
@@ -17,12 +18,11 @@ class SubNeeded(CloudFormationLintRule):
     tags = ['functions', 'sub']
 
     # Free-form text properties to exclude from this rule
-    # content is part of AWS::CloudFormation::Init
-    # RequestMappingTemplate is because of issue #1485
     excludes = ['UserData', 'ZipFile', 'Condition', 'AWS::CloudFormation::Init',
                 'CloudWatchAlarmDefinition', 'TopicRulePayload', 'BuildSpec',
-                'RequestMappingTemplate']
+                'RequestMappingTemplate', 'LogFormat', 'TemplateBody', 'ResponseMappingTemplate']
     api_excludes = ['Uri', 'Body', 'ConnectionId']
+
 
     # IAM Policy has special variables that don't require !Sub, Check for these
     # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html
@@ -126,6 +126,18 @@ class SubNeeded(CloudFormationLintRule):
                     continue
             if 'Condition' in parameter_string_path:
                 if variable in self.condition_excludes:
+                    continue
+
+            # Step Function State Machine has a Definition Substitution that allows usage of special variables outside of a !Sub
+            # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-definitionsubstitutions.html
+
+            if 'DefinitionString' in parameter_string_path:
+                modified_parameter_string_path = parameter_string_path
+                index = parameter_string_path.index('DefinitionString')
+                modified_parameter_string_path[index] = 'DefinitionSubstitutions'
+                modified_parameter_string_path = modified_parameter_string_path[:index+1]
+                modified_parameter_string_path.append(variable[2:-1])
+                if reduce(lambda c, k: c.get(k, {}), modified_parameter_string_path, cfn.template):
                     continue
 
             # Exclude variables that match custom exclude filters, if configured

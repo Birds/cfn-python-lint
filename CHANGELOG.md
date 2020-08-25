@@ -1,3 +1,59 @@
+### v0.35.0
+###### CloudFormation Specifications
+- Update CloudFormation specs to 17.0.0 (pull #[1653](https://github.com/aws-cloudformation/cfn-python-lint/pull/1653))
+- Fix ElasticMapReduce and ManagedBlockchain InstanceType patching (pull #[1654](https://github.com/aws-cloudformation/cfn-python-lint/pull/1654))
+- Include a regex pattern to check MetricValue is either a number or starts with `$` (pull #[1647](https://github.com/aws-cloudformation/cfn-python-lint/pull/1647))
+- Add more types to `AWS::ApplicationAutoScaling::ScalingPolicy.PredefinedMetricSpecification.PredefinedMetricType` (pull #[1652](https://github.com/aws-cloudformation/cfn-python-lint/pull/1652))
+- Add more values to `AWS::Lambda::Function.Runtime` (pull #[1651](https://github.com/aws-cloudformation/cfn-python-lint/pull/1651) and pull #[1649](https://github.com/aws-cloudformation/cfn-python-lint/pull/1649))
+- Add more values to `AWS::Budgets::Budget.BudgetType` (pull #[1643](https://github.com/aws-cloudformation/cfn-python-lint/pull/1643))
+###### Fixes
+- Update rule [E3031](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E3031) to convert int or float to string before doing an allowed pattern match on it (pull #[1647](https://github.com/aws-cloudformation/cfn-python-lint/pull/1647))
+- Add exceptions to rule [E1029](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E1029) (pull #[1646](https://github.com/aws-cloudformation/cfn-python-lint/pull/1646) and pull #[1648](https://github.com/aws-cloudformation/cfn-python-lint/pull/1648))
+- Update rule [E8003](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E8003) to look for string based parameters (pull #[1640](https://github.com/aws-cloudformation/cfn-python-lint/pull/1640))
+
+### v0.34.1
+###### CloudFormation Specifications
+- Update CloudFormation specs to 16.3.0 (pull #[1635](https://github.com/aws-cloudformation/cfn-python-lint/pull/1635))
+###### Fixes
+- Update rule [E3001](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E3001) to catch when Resource `Type` is not a string (pull #[1631](https://github.com/aws-cloudformation/cfn-python-lint/pull/1631))
+- Update rule [E1029](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E1029) to handle `${}` in Step Function State Machines and Definition Substitutions (pull #[1628](https://github.com/aws-cloudformation/cfn-python-lint/pull/1628))
+- Update rule [W4002](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#W4002) to only look at `Ref` and `Sub` (pull #[1627](https://github.com/aws-cloudformation/cfn-python-lint/pull/1627))
+
+### v0.34.0
+###### Features
+- Add rule [W4002](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#W4002) that checks if `Metadata` references a `NoEcho` parameter (pull #[1613](https://github.com/aws-cloudformation/cfn-python-lint/pull/1613))
+###### CloudFormation Specifications
+- Update CloudFormation specs to 16.1.0 (pull #[1622](https://github.com/aws-cloudformation/cfn-python-lint/pull/1622))
+- Remove `AWS::EC2::LaunchTemplate.BlockDeviceMapping` from `OnlyOne` (pull #[1617](https://github.com/aws-cloudformation/cfn-python-lint/pull/1617))
+- Add more `AllowedValues` to `AWS::Glue::Trigger.Predicate.Logical` (pull #[1616](https://github.com/aws-cloudformation/cfn-python-lint/pull/1616))
+- Add more `AllowedValues` to `AWS::ApplicationAutoScaling::ScalingPolicy.PredefinedMetricSpecification.PredefinedMetricType` (pull #[1604](https://github.com/aws-cloudformation/cfn-python-lint/pull/1604))
+- Add more `AllowedValues` to `AWS::S3::Bucket.TopicConfiguration.Event` (pull #[1606](https://github.com/aws-cloudformation/cfn-python-lint/pull/1606))
+- Add more `AllowedValues` to `AWS::EC2::CapacityReservation.InstancePlatform` (pull #[1605](https://github.com/aws-cloudformation/cfn-python-lint/pull/1605))
+- Fix an issue for applying `AllowedValues` to `AWS::RDS::DBInstance MonitoringInterval` and `PerformanceInsightsRetentionPeriod` (pull #[1607](https://github.com/aws-cloudformation/cfn-python-lint/pull/1607))
+- Fix an issue for applying `Maximum` and `Minimum` to `AWS::ElasticLoadBalancingV2::ListenerRule.Priority` (pull #[1608](https://github.com/aws-cloudformation/cfn-python-lint/pull/1608))
+###### Fixes
+- Update rule [E3503](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E3503) to not fail on if ValidationDomain or DomainName aren't present (pull #[1599](https://github.com/aws-cloudformation/cfn-python-lint/pull/1620))
+
+
+
+### v0.33.2
+###### Features
+- Upgrade SAM Translator to v1.25.0 (pull #[1594](https://github.com/aws-cloudformation/cfn-python-lint/pull/1594))
+###### CloudFormation Specifications
+- Update CloudFormation specs to 15.3.0 (pull #[1600](https://github.com/aws-cloudformation/cfn-python-lint/pull/1600))
+###### Fixes
+- Update rule [E3401](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E3401) to not fail on Apex records (pull #[1599](https://github.com/aws-cloudformation/cfn-python-lint/pull/1599))
+
+### v0.33.1
+###### CloudFormation Specifications
+- Update CloudFormation specs to 15.1.0 (pull #[1593](https://github.com/aws-cloudformation/cfn-python-lint/pull/1593))
+- Add additional allowed values for `AWS::SecretsManager::SecretTargetAttachment.TargetType` (pull #[1573](https://github.com/aws-cloudformation/cfn-python-lint/pull/1573))
+- Add property types for `AvailabilityZone` in the `AWS::DMS::ReplicationInstance` and `AWS::EC2::Subnet` resources (pull #[1585](https://github.com/aws-cloudformation/cfn-python-lint/pull/1585))
+- Expand allowed values for `AWS::CodeBuild::Project.Environment.Type` (pull #[1589](https://github.com/aws-cloudformation/cfn-python-lint/pull/1589))
+###### Fixes
+- Update rule [E2004](https://github.com/aws-cloudformation/cfn-python-lint/blob/master/docs/rules.md#E2004) to not check AllowedValues when the Type is `AWS::SSM::Parameter::Value<String>` (pull #[1571](https://github.com/aws-cloudformation/cfn-python-lint/pull/1571))
+- Update Transform logic to not update DefinitionUri to S3 when not using DefinitionUri originally (pull #[1576](https://github.com/aws-cloudformation/cfn-python-lint/pull/1576))
+
 ### v0.33.0
 ###### Features
 - Upgrade SAM Translator to v1.24.0 (pull #[1562](https://github.com/aws-cloudformation/cfn-python-lint/pull/1562))

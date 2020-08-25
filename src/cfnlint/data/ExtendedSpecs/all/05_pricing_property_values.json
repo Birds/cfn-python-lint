@@ -1,6 +1,13 @@
 [
   {
     "op": "add",
+    "path": "/ValueTypes/Ec2InstanceType/AllowedValues",
+    "value": [
+      "t2.micro"
+    ]
+  },
+  {
+    "op": "add",
     "path": "/ValueTypes/EMRInstanceType/AllowedValues",
     "value": [
       "c5.18xlarge",
@@ -38,6 +45,13 @@
       "r5d.2xlarge",
       "r5d.4xlarge",
       "r5d.xlarge"
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/ValueTypes/GameLiftInstanceType/AllowedValues",
+    "value": [
+      "c3.large"
     ]
   },
   {
