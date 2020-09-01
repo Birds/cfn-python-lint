@@ -20,6 +20,7 @@ class Rule(object):
     lineNumber = 0
     error_level = 'W'
     error_message = ''
+    strict = False
 
     def __init__(self, line, ruleNumber, ruleSet):
         line = line.rstrip().replace('"', '')
@@ -32,6 +33,7 @@ class Rule(object):
             self.resourceType = line[0]
             self.prop = line[1]
             self.operator = line[2]
+            self.set_strict(self.operator)
             if 'WARN' in line[3]:
                 self.error_level = 'W'
                 self.set_arguments(line[3], 'WARN')
@@ -41,11 +43,21 @@ class Rule(object):
             else:
                 self.process_sets(line[3])
                 self.value = line[3]
+                if not self.strict:
+                    self.value = self.value.lower()
         self.lineNumber = str(self.lineNumber).zfill(4)
+
+    def set_strict(self, operator):
+        operator = operator.split('_')
+        if operator[0] == 'STRICT' and len(operator) == 2:
+            self.strict = True
+            self.operator = operator[1]
 
     def set_arguments(self, argument, error):
         raw_value = argument.split(error)
         self.value = raw_value[0].strip()
+        if not self.strict:
+            self.value = self.value.lower()
         self.process_sets(raw_value[0])
         if len(raw_value) > 1:
             self.error_message = raw_value[1]

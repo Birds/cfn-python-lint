@@ -1,4 +1,12 @@
 #Comments can be made with a '#' symbol at the start of the line
-#Syntax: <Resource Type> <Property[*]> <Operator> <Value>
-#Example: AWS::EC2::Instance InstanceType EQUALS "p3.2xlarge"
-AWS::EC2::Instance ImageId EQUALS "SomethingItIsNotEqualTo"
+#Syntax: <Resource Type> <Property[*]> <Operator> <Value> [Error Level (ERROR, WARN)] [Custom Error Message]
+#Example: AWS::EC2::Instance InstanceType EQUALS "p3.2xlarge" WARN "This is too expensive"
+AWS::EC2::Instance InstanceType EQUALS "p3.2xlarge" WARN "This is too expensive"
+AWS::IAM::Role AssumeRolePolicyDocument.Version EQUALS "2011-10-17 Apples"
+AWS::IAM::Rollercoaster AssumeRolePolicyDocument.Version EQUALS [Apple, Banana, Pear] ERROR
+AWS::Logs::LogGroup RetentionInDays IN [Apple, Banana, Pear] WARN Look at this brilliant custom message
+AWS::Serverless::Function AutoPublishAlias EQUALS DescribeBrokerInstanceOptionsApiAlias
+
+#AWS::IAM::Role AssumeRolePolicyDocument.Version EQUALS "2011-10-17 Apples"
+
+#AWS::IAM::Rollercoaster AssumeRolePolicyDocument.Version EQUALS [Apple, Banana, Pear] ERROR
